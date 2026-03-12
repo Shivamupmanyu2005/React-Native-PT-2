@@ -1,20 +1,88 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import TabBar from "./TabBar";
 
 export default function ProfileScreen({ navigation }) {
-
   return (
-    <View style={{ flex:1, justifyContent:"center", alignItems:"center" }}>
-      
-      <Text style={{ fontSize:22 }}>Profile Screen</Text>
+    <View style={styles.screen}>
+      <ScrollView contentContainerStyle={styles.content}>
+        <View style={styles.card}>
+          <Image
+            source={{ uri: "https://placehold.co/240x240/F4C95D/2D2A26.png?text=RK" }}
+            style={styles.avatar}
+          />
+          <Text style={styles.name}>Riya Kapoor</Text>
+          <Text style={styles.meta}>riya@example.com</Text>
 
-      {/* Button to go back */}
-      <Button
-        title="Go Back Home"
-        onPress={() => navigation.navigate("Home")}
-      />
+          <View style={styles.statsRow}>
+            <View style={styles.statCard}>
+              <Text style={styles.statNumber}>3</Text>
+              <Text style={styles.statLabel}>Orders</Text>
+            </View>
+            <View style={styles.statCard}>
+              <Text style={styles.statNumber}>1</Text>
+              <Text style={styles.statLabel}>Wishlist</Text>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
 
+      <TabBar navigation={navigation} activeTab="Profile" />
     </View>
   );
-
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: "#f6f1e8",
+  },
+  content: {
+    padding: 18,
+    paddingBottom: 120,
+  },
+  card: {
+    backgroundColor: "#fffaf3",
+    borderRadius: 24,
+    padding: 24,
+    alignItems: "center",
+  },
+  avatar: {
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    marginBottom: 16,
+    backgroundColor: "#f4c95d",
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: "800",
+    color: "#1a1a1a",
+  },
+  meta: {
+    color: "#6b675f",
+    marginTop: 6,
+    marginBottom: 18,
+  },
+  statsRow: {
+    flexDirection: "row",
+    gap: 12,
+    width: "100%",
+  },
+  statCard: {
+    flex: 1,
+    backgroundColor: "#efe5d0",
+    borderRadius: 18,
+    paddingVertical: 18,
+    alignItems: "center",
+  },
+  statNumber: {
+    fontSize: 22,
+    fontWeight: "800",
+    color: "#1f3b2f",
+  },
+  statLabel: {
+    marginTop: 4,
+    color: "#6b675f",
+  },
+});
